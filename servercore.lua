@@ -126,7 +126,7 @@ coroutine.wrap(function()
 		wait()
 		local success, result = pcall(function()
 			return httpService:RequestAsync({
-				Url = "webserver",  
+				Url = webserverEndpoint,  
 				Method = "GET"
 			})
 		end)

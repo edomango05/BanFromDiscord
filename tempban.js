@@ -16,7 +16,7 @@ module.exports = {
   name: "temp",
   description: "tempban",
   execute(message) {
-    if (message.member.permissions.has('BAN_MEMBERS') || message.member.roles.cache.has("716256819093307392")) {
+    if (message.member.permissions.has('BAN_MEMBERS')) {
       const args = message.content.split(/ +/)
       args.shift()
       if (typeof args[0] === "string" && typeof args[1] === "string") {

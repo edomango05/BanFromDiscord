@@ -74,7 +74,7 @@ setmetatable(playersToDestroy,{
 
 			else
 				httpService:RequestAsync({
-					Url = webhookLog,, 
+					Url = webhookLog,
 					Method = "POST",
 					Headers = {
 						["Content-Type"] = "application/json" 

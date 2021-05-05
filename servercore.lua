@@ -6,12 +6,6 @@ local webhookLog = "jesus"
 local webserverEndpoint = "http://jesus:3000"
 local playersToDestroy = {}
 function parser(time)
-	local timeObject = {
-		m= 60,
-		h= 3600,
-		g= 86400,
-		s=604800
-	}
 	if time >= 60 and time < 3600 then
 		return tostring(time/60).." minutes"
 	elseif time >= 3600 and time < 86400 then

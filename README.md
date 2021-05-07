@@ -29,7 +29,7 @@ TimeTables
 ``` 
 example for ban 2 days
 ```
-§temp polloarrosto01 2g exploits
+§temp polloarrosto01 2d exploits
 ``` 
 `§temp robloxUsername [how much?] reason`
 

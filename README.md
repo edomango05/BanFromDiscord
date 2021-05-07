@@ -23,8 +23,8 @@ TimeTables
 
 30 minutes = 20m
 2 hours = 2h
-80 days = 80g
-3 weeks = 3s
+80 days = 80d
+3 weeks = 3w
 
 ``` 
 example for ban 2 days

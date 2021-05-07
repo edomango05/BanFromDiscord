@@ -141,8 +141,7 @@ Players.PlayerAdded:Connect(function(plr)
 	end
 end)
 coroutine.wrap(function()
-	while wait(4) do
-		wait()
+	while wait() do
 		local success, result = pcall(function()
 			return httpService:RequestAsync({
 				Url = endpoint,  
@@ -157,7 +156,7 @@ coroutine.wrap(function()
 				end
 			end
 		else
-			warn("error fetching")
+			warn("fetching...")
 			wait(2)
 		end
 	end

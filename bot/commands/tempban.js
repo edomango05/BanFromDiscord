@@ -5,8 +5,8 @@ function parseTime(time) {
     const timeObject = {
       m: 60,
       h: 3600,
-      g: 86400,
-      s: 604800
+      d: 86400,
+      w: 604800
     }
     const digits = parseInt(time.match(/\d+/)[0])
     return timeObject[time.charAt(time.length - 1)] && digits * timeObject[time.charAt(time.length - 1)] || false

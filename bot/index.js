@@ -1,31 +1,43 @@
-const fs = require('fs')
-const Discord = require('discord.js');
-const Client = require('./client/Client');
-const { token, prefix, StatuServer } = require('./config.json');
-const client = new Client({ ws: { intents: Discord.Intents.ALL } });
-Main.client = client
-client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync("../bot/botpalermo/commands").filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  client.commands.set(command.name, command);
-}
-console.log(client.commands);
-client.once('ready', () => {
-  console.log('ready');
+// Create client
+const client = require("./client");
+const { commands } = client;
+
+// Get configurations
+const { token, prefix } = require("./config.json");
+
+// Setup commands
+require("fs").readdirSync("./commands")
+	.filter(file => file.endsWith(".js"))
+	.forEach(file => {
+		let command = require(`./commands/${file}`);
+		commands.set(command.name, command);
+	});
+
+// On ready
+client.once("ready", () => console.log("ready"));
+
+// On new message
+client.on("message", message => {
+	const { author, content, channel } = message;
+
+	// Checks
+	if (author.bot) return;
+	if (!content.startsWith(prefix)) return;
+
+	// Get arguments and command
+	const args = content.slice(prefix.length).split(/ +/);
+	const command = commands.get(args.shift().toLowerCase());
+
+	if (command) {
+		// Try executing the command
+		try {
+			command.execute(message, args);
+		} catch(e) {
+			console.log(e);
+			channel.send(":x: An error occurred");
+		}
+	}
 });
-client.on('message', async message => {
-  const args = message.content.slice(prefix.length).split(/ +/);
-  const commandName = args.shift().toLowerCase();
-  const command = client.commands.get(commandName);
-  if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
-  try {
-    if (command) {
-      command.execute(message);
-    }
-  } catch (error) {
-    console.log(error)
-  }
-});
-client.login(token)
+
+// Login
+client.login(token);

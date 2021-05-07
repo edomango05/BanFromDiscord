@@ -1,50 +1,64 @@
-# SETUP
-clone the repository with `git clone https://github.com/pollovolante/BanFromDiscord.git` or install the zip file
-## Installation 
-install [node.js](https://nodejs.org/en/)
+# [BanFromDiscord](https://github.com/pollovolante/BanFromDiscord)
 
-## Dependencies 
-run `npm i` into you terminal or console
+banhammerbanhammerbanhammerbanhammerbanhammer
+
+
+
+# Setup
+
+Clone the repository with `git clone https://github.com/pollovolante/BanFromDiscord` or download and extract the zip file.
+
+
+## Installation
+
+**Note: You need [NodeJS](https://nodejs.org) installed on your system.**
+
+Install dependencies by running `npm i` in your terminal.
+
 
 ## Discord Bot
-[here](https://www.howtogeek.com/364225how-to-make-your-own-discord-bot/) you can find out how to make a discord bot app and how to get the token
-**now put the discord bot token into [config.json file](https://github.com/pollovolante/BanFromDiscord/blob/main/bot/config.json)** (if you want you can also change the bot prefix there)
-## Roblox Script config [BanHammer](https://github.com/pollovolante/BanFromDiscord/blob/main/BanHammer.lua)
-put [BanHammer](https://github.com/pollovolante/BanFromDiscord/blob/main/BanHammer.lua) into ServerScriptService and configure it
-with the ip of the webserver host replacing `ip` [here](https://github.com/pollovolante/BanFromDiscord/blob/main/BanHammer.lua#L10). Then create a [webhook](https://www.minitool.com/images/uploads/news/2021/03/make-discord-webhooks-for-github/make-discord-webhooks-for-github-1.png) into a log channel to receive info from the Roblox server and get the [webhook](https://www.minitool.com/images/uploads/news/2021/03/make-discord-webhooks-for-github/make-discord-webhooks-for-github-1.png) URL. Now you have to put this URL into the lua file ([here](https://github.com/pollovolante/BanFromDiscord/blob/main/BanHammer.lua#L10))
-## Startup
-Remains only to run the webserver and the bot! So click on the run.bat files that are into `./bot` and `./server` folders and ... that's it ! Now you can destroy players from discord >:D.
-## Usage 
-### Default commands
 
-**tempban**
-```
-TimeTables
-
-30 minutes = 20m
-2 hours = 2h
-80 days = 80d
-3 weeks = 3w
-
-``` 
-example for ban 2 days
-```
-§temp polloarrosto01 2d exploits
-``` 
-`§temp robloxUsername [how much?] reason`
-
-**permaban**
-example 
-```
-§gameban polloarrosto01 exploits
-``` 
-`§gameban robloxUsername reason`
+Follow this guide [here](https://discordjs.guide/preparations/setting-up-a-bot-application.html) on how to make Discord bot application and getting the bot token.\
+**Now put the bot token into the `config.json` file.**\
+If you want you can also change the bot prefix in `config.json`.
 
 
-**unban**
-example 
-```
-§unban polloarrosto01 because yes
-``` 
-`§unban robloxUsername reason`
+## Add Roblox Script
 
+Replace `ip` with your backend server's IP address on line 10 of [`BanHammer.lua`](https://github.com/pollovolante/BanFromDiscord/blob/main/BanHammer.lua).\
+Then create a webhook into a log channel to receive info from the Roblox server and copy the webhook URL.
+![Creating a webhook](https://www.minitool.com/images/uploads/news/2021/03/make-discord-webhooks-for-github/make-discord-webhooks-for-github-1.png)\
+Now paste the webhook URL at line 9 of `BanHammer.lua`.\
+Finally, select everything in `BanHammer.lua` and paste it into a script inside ServerScriptService.
+
+
+## Running
+
+Now you only have to startup the backend server and Discord bot.\
+So double-click `run.bat` found in `bot` and `server` folders and that's it!\
+Time to destroy players from Discord >:D
+
+
+## Commands Usage
+
+### Duration arguments
+| Actual duration | Passed argument |
+|-|-|
+| 30 minutes | `30m` |
+| 2 hours | `2h` |
+| 10 days | `10d` |
+| 3 weeks | `3w` |
+
+### Commands
+
+**Temporary Ban `§temp`**\
+Usage: `§temp robloxUsername banDuration reason`\
+Example 2 day ban: `§temp polloarrosto01 2d using exploits`
+
+**Permanent Ban `§gameban`**\
+Usage: `§gameban robloxUsername reason`\
+Example permanent ban: `§gameban polloarrosto01 exploiting noob`
+
+**Unban `§unban`**\
+Usage: `§unban robloxUsername reason`\
+Example unban: `§unban polloarrosto01 because yes`

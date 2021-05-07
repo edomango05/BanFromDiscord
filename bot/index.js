@@ -14,12 +14,6 @@ console.log(client.commands);
 client.once('ready', () => {
   console.log('ready');
 });
-client.once('reconnecting', () => {
-  console.log('reconnecting');
-});
-client.once('disconnect', () => {
-  console.log('disconnecting');
-});
 client.on('message', async message => {
   const args = message.content.slice(prefix.length).split(/ +/);
   const commandName = args.shift().toLowerCase();

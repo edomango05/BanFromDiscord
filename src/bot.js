@@ -25,9 +25,7 @@ client.on("message", message => {
 	const { author, content, channel } = message;
 
 	// Checks
-	if (channel.type === "dm") return;
-	if (author.bot) return;
-	if (!content.startsWith(prefix)) return;
+	if (channel.type === "dm" || author.bot || !content.startsWith(prefix)) return
 
 	// Get arguments and command
 	const args = content.slice(prefix.length).split(/ +/);

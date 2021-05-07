@@ -19,8 +19,9 @@ Install dependencies by running `npm i` in your terminal.
 ## Discord Bot
 
 Follow this guide [here](https://discordjs.guide/preparations/setting-up-a-bot-application.html) on how to make Discord bot application and getting the bot token.\
-**Now put the bot token into the `config.json` file.**\
-If you want you can also change the bot prefix in `config.json`.
+Duplicate [`.env.example`](https://github.com/pollovolante/BanFromDiscord/blob/main/src/.env.example) and rename it as `.env`. Not `.env.txt`, **just `.env`**.\
+**Now put the bot token into `.env`.**\
+If you want you can also change the bot prefix in the same file.
 
 
 ## Add Roblox Script
@@ -32,10 +33,10 @@ Now paste the webhook URL at line 9 of `BanHammer.lua`.\
 Finally, select everything in `BanHammer.lua` and paste it into a script inside ServerScriptService.
 
 
-## Running
+## Running backend server
 
-Now you only have to startup the backend server and Discord bot.\
-So double-click `run.bat` found in `bot` and `server` folders and that's it!\
+Now you only have to start up the backend server and Discord bot.\
+Run `npm start` in your terminal and that's it!\
 Time to destroy players from Discord >:D
 
 

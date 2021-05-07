@@ -4,7 +4,7 @@
 	"description": "banhammerbanhammerbanhammerbanhammerbanhammer",
 	"main": "src/index.js",
 	"scripts": {
-		"start": "node .",
+		"start": "node ."
 	},
 	"author": "pollovolante",
 	"license": "MIT",

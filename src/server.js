@@ -31,4 +31,4 @@ app.post("/ban", (req, res) => {
 app.get("/", (_req, res) => res.sendStatus(200));
 
 // Start webserver
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`Webserver: Listening on port ${port}`));

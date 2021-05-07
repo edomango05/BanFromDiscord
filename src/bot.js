@@ -7,7 +7,7 @@ const client = require("./client");
 const { commands } = client;
 
 // Get configurations
-const { token, prefix } = require("./config.json");
+const { TOKEN: token, PREFIX: prefix } = process.env;
 
 // Setup commands
 readdirSync(path.join(__dirname, "/commands"))
@@ -18,7 +18,7 @@ readdirSync(path.join(__dirname, "/commands"))
 	});
 
 // On ready
-client.once("ready", () => console.log("ready"));
+client.once("ready", () => console.log(`Discord bot: ${client.user.tag} is ready`));
 
 // On new message
 client.on("message", message => {

@@ -1,48 +1,41 @@
-const fetch = require("node-fetch")
+const { get, post } = require("axios").default;
 
-function parseTime(time) {
-  if (typeof time === "string") {
-    const timeObject = {
-      m: 60,
-      h: 3600,
-      d: 86400,
-      w: 604800
-    }
-    const digits = parseInt(time.match(/\d+/)[0])
-    return timeObject[time.charAt(time.length - 1)] && digits * timeObject[time.charAt(time.length - 1)] || false
-  }
+const parseTime = time => {
+	const timeObject = { m: 60, h: 3600, d: 86400, w: 604800 };
+	let [_, n, unit] = time.match(/(\d+)(\w)/);
+	n = parseInt(n);
+	if (!(n && timeObject[unit])) return false;
+	return n * timeObject[unit];
 }
+
 module.exports = {
-  name: "temp",
-  description: "tempban name time reason",
-  execute(message) {
-    if (message.member.permissions.has('BAN_MEMBERS')) {
-      const args = message.content.split(/ +/)
-      args.shift()
-      if (typeof args[0] === "string" && typeof args[1] === "string") {
-        const playerName = args[0]
-        const unixDiff = parseTime(args[1])
-        if (!unixDiff || unixDiff === 0) {
-          return message.reply("Utilizzo sbagliato")
-        }
-        args.shift()
-        args.shift()
-        fetch("https://api.roblox.com/users/get-by-username?username=" + playerName).then(response => response.json()).then(data => {
-          fetch("http://localhost:3000/ban", {
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({
-              playerName: playerName,
-              time: unixDiff,
-              playerid: data.Id,
-              reason: args.join(" "),
-              author: message.member.displayName
-            })
-          })
-        })
-      }
-    }
-  }
+	name: "temp",
+	description: "Temporarily ban a user from the game",
+	args: true,
+	usage: "robloxUsername banDuration reason",
+	permission: "BAN_MEMBERS",
+	execute(message, args) {
+		const { author, channel } = message;
+
+		if (args[2] === undefined)
+			return channel.send(":x: Incorrect usage. To view correct usage please rerun this command without any arguments");
+		const playerName = args.shift();
+		const unixDiff = parseTime(args.shift());
+		if (!unixDiff || unixDiff <= 0)
+			return channel.send(":x: Please provide a valid duration. Example: 5 hours = `5h`, 3 days = `3d`");
+
+		get(`https://api.roblox.com/users/get-by-username?username=${playerName}`)
+			.then(({ data }) => {
+				if (data.success === false)
+					return channel.send(`:x: ${data.errorMessage}`);
+				post("http://localhost:3000/ban", {
+					playerName,
+					playerid: data.Id,
+					time: unixDiff,
+					reason: args.join(" "),
+					author: author.username
+				})
+			})
+			.catch(console.log);
+	}
 }

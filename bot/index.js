@@ -1,3 +1,7 @@
+// Modules
+const { readdirSync } = require("fs");
+const path = require("path");
+
 // Create client
 const client = require("./client");
 const { commands } = client;
@@ -6,7 +10,7 @@ const { commands } = client;
 const { token, prefix } = require("./config.json");
 
 // Setup commands
-require("fs").readdirSync("./commands")
+readdirSync(path.join(__dirname, "/commands"))
 	.filter(file => file.endsWith(".js"))
 	.forEach(file => {
 		let command = require(`./commands/${file}`);
@@ -21,6 +25,7 @@ client.on("message", message => {
 	const { author, content, channel } = message;
 
 	// Checks
+	if (channel.type === "dm") return;
 	if (author.bot) return;
 	if (!content.startsWith(prefix)) return;
 
@@ -29,6 +34,18 @@ client.on("message", message => {
 	const command = commands.get(args.shift().toLowerCase());
 
 	if (command) {
+		// Permission check
+		if (command.permission) {
+			const perms = channel.permissionsFor(author);
+			if (!(perms && perms.has(command.permission))) return;
+		}
+		// Arguments check
+		if (command.args && !args.length) {
+			let reply = ":x: No arguments provided";
+			if (command.usage)
+				reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``;
+			return channel.send(reply);
+		}
 		// Try executing the command
 		try {
 			command.execute(message, args);

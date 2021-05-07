@@ -1,31 +1,30 @@
-const fetch = require("node-fetch")
-module.exports = {
-  name: "gameban",
-  description: "gameban name reason",
-  execute(message) {
-    if (message.member.permissions.has('BAN_MEMBERS')) {
-      const args = message.content.split(/ +/)
-      args.shift()
+const { get, post } = require("axios").default;
 
-      if (typeof args[0] === "string" && typeof args[1] === "string") {
-        const playerName = args[0]
-        args.shift()
-        fetch("https://api.roblox.com/users/get-by-username?username=" + playerName).then(response => response.json()).then(data => {
-          fetch("http://localhost:3000/ban", {
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({
-              playerName: playerName,
-              time: false,
-              playerid: data.Id,
-              reason: args.join(" "),
-              author: message.member.displayName
-            })
-          })
-        })
-      }
-    }
-  }
+module.exports = {
+	name: "gameban",
+	description: "Ban a user from the game",
+	args: true,
+	usage: "robloxUsername reason",
+	permission: "BAN_MEMBERS",
+	execute(message, args) {
+		const { author, channel } = message;
+
+		if (args[1] === undefined)
+			return channel.send(":x: Incorrect usage. To view correct usage please rerun this command without any arguments");
+		const playerName = args.shift();
+
+		get(`https://api.roblox.com/users/get-by-username?username=${playerName}`)
+			.then(({ data }) => {
+				if (data.success === false)
+					return channel.send(`:x: ${data.errorMessage}`);
+				post("http://localhost:3000/ban", {
+					playerName,
+					playerid: data.Id,
+					time: false,
+					reason: args.join(" "),
+					author: author.username
+				})
+			})
+			.catch(console.log);
+	}
 }

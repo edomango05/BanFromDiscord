@@ -52,14 +52,14 @@ Time to destroy players from Discord >:D
 
 ### Commands
 
-**Temporary Ban `§temp`**\
+**`§temp` - Temporary Ban**\
 Usage: `§temp robloxUsername banDuration reason`\
 Example 2 day ban: `§temp polloarrosto01 2d using exploits`
 
-**Permanent Ban `§gameban`**\
+**`§gameban` - Permanent Ban**\
 Usage: `§gameban robloxUsername reason`\
 Example permanent ban: `§gameban polloarrosto01 exploiting noob`
 
-**Unban `§unban`**\
+**`§unban` - Unban**\
 Usage: `§unban robloxUsername reason`\
 Example unban: `§unban polloarrosto01 because yes`

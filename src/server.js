@@ -5,8 +5,10 @@ const { EventEmitter } = require("events");
 
 // Constants
 const events = new EventEmitter();
-let ban = [];
 const port = 3000;
+
+// Ban cache
+let ban = [];
 
 // Express app
 const app = express();

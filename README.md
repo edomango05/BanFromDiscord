@@ -18,7 +18,7 @@ Install dependencies by running `npm i` in your terminal.
 
 ## Discord Bot
 
-Follow this guide [here](https://discordjs.guide/preparations/setting-up-a-bot-application.html) on how to make Discord bot application and getting the bot token.\
+You first need to create a Discord bot and then copy the bot token. Do so by following this guide [here](https://discordjs.guide/preparations/setting-up-a-bot-application.html).\
 Duplicate [`.env.example`](https://github.com/pollovolante/BanFromDiscord/blob/main/src/.env.example) and rename it as `.env`. Not `.env.txt`, **just `.env`**.\
 **Now put the bot token into `.env`.**\
 If you want you can also change the bot prefix in the same file.
@@ -26,14 +26,14 @@ If you want you can also change the bot prefix in the same file.
 
 ## Add Roblox Script
 
-Replace `ip` with your backend server's IP address on line 10 of [`BanHammer.lua`](https://github.com/pollovolante/BanFromDiscord/blob/main/BanHammer.lua).\
+Replace **`ip`** with your backend server's IP address on line 17 of [`BanFromDiscord.lua`](https://github.com/pollovolante/BanFromDiscord/blob/main/BanFromDiscord.lua#L17).\
 Then create a webhook into a log channel to receive info from the Roblox server and copy the webhook URL.
 ![Creating a webhook](https://www.minitool.com/images/uploads/news/2021/03/make-discord-webhooks-for-github/make-discord-webhooks-for-github-1.png)\
-Now paste the webhook URL at line 9 of `BanHammer.lua`.\
-Finally, select everything in `BanHammer.lua` and paste it into a script inside ServerScriptService.
+Now paste the webhook URL at line 16 of [`BanFromDiscord.lua`](https://github.com/pollovolante/BanFromDiscord/blob/main/BanFromDiscord.lua#L16).\
+Finally, select everything and paste it into a script inside ServerScriptService.
 
 
-## Running backend server
+## Running the backend server
 
 Now you only have to start up the backend server and Discord bot.\
 Run `npm start` in your terminal and that's it!\

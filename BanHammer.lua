@@ -1,13 +1,26 @@
 --[[
-	Roblox to Discord Link! CheckOUT my repo https://github.com/pollovolante/BanFromDiscord/tree/main
-	discord : polloarrosto01
+	== BanFromDiscord ==
+	This is the Roblox script that is put in your ServerScriptService.
+	It links the Discord bot to your game.
+	Try not to touch anything if you don't know what you are doing.
+	GitHub: https://github.com/pollovolante/BanFromDiscord#readme
+	Discord: Savastano#0204
+	Special thanks for contributors like MarsRon#7602 (github : https://github.com/MarsRon)
 ]]
+
+--[[
+	Please modify the following two lines by following this guide:
+	https://github.com/pollovolante/BanFromDiscord#add-roblox-script
+]]
+local notificationWebhook = ""
+local endpoint = "http://ip:3000/ban"
+
+
 local httpService = game:GetService("HttpService")
 local DDS = game:GetService("DataStoreService")
 local Players = game:GetService("Players")
 local BanHammerStore = DDS:GetDataStore("BanHammer", 2) 
-local notificationWebhook = ""
-local endpoint = "http://ip:3000/ban"
+
 local playersToDestroy = {}
 function parser(time)
 	if time >= 60 and time < 3600 then

@@ -26,10 +26,10 @@ If you want you can also change the bot prefix in the same file.
 
 ## Add Roblox Script
 
-Replace `ip` with your backend server's IP address on line 10 of [`BanHammer.lua`](https://github.com/pollovolante/BanFromDiscord/blob/main/BanHammer.lua).\
+Replace `ip` with your backend server's IP address on line 15 of [`BanHammer.lua`](https://github.com/pollovolante/BanFromDiscord/blob/main/BanHammer.lua#L15).\
 Then create a webhook into a log channel to receive info from the Roblox server and copy the webhook URL.
 ![Creating a webhook](https://www.minitool.com/images/uploads/news/2021/03/make-discord-webhooks-for-github/make-discord-webhooks-for-github-1.png)\
-Now paste the webhook URL at line 9 of `BanHammer.lua`.\
+Now paste the webhook URL at line 16 of [`BanHammer.lua`](https://github.com/pollovolante/BanFromDiscord/blob/main/BanHammer.lua#L16).\
 Finally, select everything in `BanHammer.lua` and paste it into a script inside ServerScriptService.
 
 

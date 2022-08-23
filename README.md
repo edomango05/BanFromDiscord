@@ -1,5 +1,5 @@
 # [BanFromDiscord](https://github.com/pollovolante/BanFromDiscord)
-outtodate
+OUTDATED
 
 
 

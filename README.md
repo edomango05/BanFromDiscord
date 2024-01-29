@@ -1,5 +1,5 @@
 # [BanFromDiscord](https://github.com/pollovolante/BanFromDiscord)
-OUTDATED
+OUTDATED CHECK FOR [RobloxWS](https://github.com/pollovolante/RobloxWS)
 
 
 
